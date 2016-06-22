@@ -7,9 +7,6 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>bibliotecaJdbc Maven Webapp</name>
   <url>http://maven.apache.org</url>
-  <properties>
-      <tomcat.version>7.0.57</tomcat.version>
-  </properties>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -17,7 +14,6 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
-
     <dependency>
         <groupId>jstl</groupId>
         <artifactId>jstl</artifactId>

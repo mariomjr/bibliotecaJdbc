@@ -1,8 +1,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
     <head>
-        <link rel="stylesheet" href="../css/bootstrap.min.css">   		
-        <script src="../js/bootstrap.min.js"></script>       
+        <link rel="stylesheet" href="resources/css/bootstrap.min.css">   		
+        <link rel="stylesheet" href="resources/css/biblioteca.css">   		
+        <script src="resources/js/bootstrap.min.js"></script>       
+        <script src="resources/js/jquery-1.12.3.min.js"></script>       
+        <script src="resources/js/jquery-mask-min.js"></script>       
+        <script src="resources/js/biblioteca.js"></script>       
     </head>
 
     <body>          

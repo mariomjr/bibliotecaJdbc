@@ -21,6 +21,30 @@ public class Livro implements Serializable{
 	private Calendar dataInsercao;
 	
 	private Double valor;
+	
+
+	public Livro() {
+		super();
+	}
+
+	public Livro(String nome, String descricao, Integer ano, Calendar dataInsercao, Double valor) {
+		super();
+		this.nome = nome;
+		this.descricao = descricao;
+		this.ano = ano;
+		this.dataInsercao = dataInsercao;
+		this.valor = valor;
+	}
+	
+
+	public Livro(Long id, String nome, String descricao, Integer ano, Double valor) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.descricao = descricao;
+		this.ano = ano;
+		this.valor = valor;
+	}
 
 	public Long getId() {
 		return id;
