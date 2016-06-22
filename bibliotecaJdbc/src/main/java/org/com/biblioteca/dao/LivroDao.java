@@ -31,9 +31,11 @@ public class LivroDao {
 					livro.setNome(rs.getString("nome"));
 					livro.setDescricao(rs.getString("descricao"));
 					livro.setAno(rs.getInt("ano"));
-					Date date = rs.getDate("dataInsercao");
+					Date date = rs.getDate("dataInclusao");
 					Calendar data = Calendar.getInstance();
-					data.setTimeInMillis(date.getTime());
+					if(date!= null){
+						data.setTimeInMillis(date.getTime());
+					}
 					livro.setDataInclusao(data);
 					livro.setValor(rs.getDouble("valor"));
 					return livro;
@@ -59,7 +61,11 @@ public class LivroDao {
 		if(conn!= null){
 			try {
 				StringBuilder sql = new StringBuilder();
-				sql.append(" select id, nome, descricao, ano, dataInclusao, valor from livro");
+				sql.append(" select id, nome, descricao, ano, dataInclusao, valor from livro ");
+				if(query!= null){
+					sql.append(" where nome like '%").append(query).append("%'  or ");
+					sql.append(" descricao like '%").append(query).append("%' ");
+				}
 				PreparedStatement ps = conn.prepareStatement(sql.toString());
 //				ps.setLong(1, id);
 				ResultSet rs = ps.executeQuery();
@@ -71,9 +77,11 @@ public class LivroDao {
 					livro.setNome(rs.getString("nome"));
 					livro.setDescricao(rs.getString("descricao"));
 					livro.setAno(rs.getInt("ano"));
-					Date date = rs.getDate("dataInsercao");
+					Date date = rs.getDate("dataInclusao");
 					Calendar data = Calendar.getInstance();
-					data.setTimeInMillis(date.getTime());
+					if(date!= null){
+						data.setTimeInMillis(date.getTime());
+					}
 					livro.setDataInclusao(data);
 					livro.setValor(rs.getDouble("valor"));
 					listLivro.add(livro);
@@ -123,10 +131,94 @@ public class LivroDao {
 	}
 
 	public void salvarAlterarLivro(Livro livro) {
-		// TODO Auto-generated method stub
+		if(livro.getId() ==null){
+			inserirLivro(livro);
+		}else{
+			alterarLivro(livro);
+		}
 	}
 	
+	private void alterarLivro(Livro livro) {
+		Connection conn = ConnectionFactory.createConnection();
+		if(conn!= null){
+			try {
+				StringBuilder sql = new StringBuilder();
+				sql.append(" update livro set nome = ?, descricao = ? , ano = ?,valor = ? where id = ?");
+				PreparedStatement ps = conn.prepareStatement(sql.toString());
+				ps.setString(1, livro.getNome());
+				ps.setString(2, livro.getDescricao());
+				ps.setInt(3, livro.getAno());
+				ps.setDouble(4, livro.getValor());
+				ps.setLong(5, livro.getId());
+//				ps.setTimestamp(5, livro.getDataInclusao().getTime());
+				ps.executeQuery();
+				
+				ps.close();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally{
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+	}
+
+	private void inserirLivro(Livro livro) {
+		Connection conn = ConnectionFactory.createConnection();
+		if(conn!= null){
+			try {
+				StringBuilder sql = new StringBuilder();
+				sql.append(" insert into livro(id, nome, descricao, ano,valor) values(?,?,?,?,?) ");
+				PreparedStatement ps = conn.prepareStatement(sql.toString());
+				ps.setLong(1, buscaNextIdLivro());
+				ps.setString(2, livro.getNome());
+				ps.setString(3, livro.getDescricao());
+				ps.setInt(4, livro.getAno());
+//				ps.setTimestamp(5, livro.getDataInclusao().getTime());
+				ps.setDouble(5, livro.getValor());
+				ps.execute();
+				
+				ps.close();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally{
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+	}
+
 	public void removerLivro(Long id) {
-		// TODO Auto-generated method stub
+		Connection conn = ConnectionFactory.createConnection();
+		if(conn!= null){
+			try {
+				StringBuilder sql = new StringBuilder();
+				sql.append(" delete from livro where id = ? ");
+				PreparedStatement ps = conn.prepareStatement(sql.toString());
+				ps.setLong(1, id);
+				ps.execute();
+				
+				ps.close();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally{
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 }

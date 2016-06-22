@@ -12,25 +12,25 @@
     </head>
     <body>
         <div class="container">
-            <form action="/livros" method="post"  role="form" data-toggle="validator" >
+            <form action="/bibliotecaJdbc/livros" method="post"  role="form" data-toggle="validator" >
                 <c:if test ="${empty action}">                        	
-                    <c:set var="action" value="add"/>
+                    <c:set var="action" value="adicionar"/>
                 </c:if>
                 <input type="hidden" id="action" name="action" value="${action}">
                 <input type="hidden" id="idLivro" name="idLivro" value="${livro.id}">
                 <h2>Livro</h2>
                 <div class="form-group col-xs-4">
-                    <label for="itNome" class="control-label col-xs-4">Nome:</label>
-                    <input type="text" name="itNome" id="itNome" class="form-control" value="${livro.nome}"/>                                   
+                    <label for="nome" class="control-label col-xs-4">Nome:</label>
+                    <input type="text" name="nome" id="nome" class="form-control" value="${livro.nome}"/>                                   
 
-                    <label for="itDescricao" class="control-label col-xs-4">Descrição:</label>                   
-                    <input type="text" name="itDescricao" id="itDescricao" class="form-control" value="${livro.descricao}"/> 
+                    <label for="descricao" class="control-label col-xs-4">Descrição:</label>                   
+                    <input type="text" name="descricao" id="descricao" class="form-control" value="${livro.descricao}"/> 
 
-                    <label for="itAno" class="control-label col-xs-4">Ano:</label>                 
-					<input type="text" name="itAno" id="itAno" class="form-control" value="${livro.ano}"/> 
+                    <label for="ano" class="control-label col-xs-4">Ano:</label>                 
+					<input type="text" name="ano" id="ano" class="form-control" value="${livro.ano}"/> 
 					
-                    <label for="itValor" class="control-label col-xs-4">Valor:</label>                 
-					<input type="text" name="itValor" id="itValor" class="form-control" value="${livro.valor}"/> 
+                    <label for="valor" class="control-label col-xs-4">Valor:</label>                 
+					<input type="text" name="valor" id="valor" class="form-control" value="${livro.valor}"/> 
 
                     <br></br>
                     <button type="submit" class="btn btn-primary  btn-md">Salvar</button> 

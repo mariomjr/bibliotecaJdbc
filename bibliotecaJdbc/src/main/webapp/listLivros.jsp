@@ -12,10 +12,10 @@
     <body>          
         <div class="container">
             <h2>Livros</h2>
-            <form action="/livros" method="get" id="searchLivrosForm" role="form">
-                <input type="hidden" id="searchAction" name="searchAction" value="queryItem">
+            <form action="/bibliotecaJdbc/livros" method="get" id="searchLivrosForm" role="form">
+                <input type="hidden" id="searchAction" name="searchAction" value="buscaByItem">
                 <div class="form-group col-xs-5">
-                    <input type="text" name="itemBusca" id="itemBusca" class="form-control" placeholder="Digite para buscar"/>                    
+                    <input type="text" name="queryItem" id="queryItem" class="form-control" placeholder="Digite para buscar"/>                    
                 </div>
                 <button type="submit" class="btn btn-info">
                     <span class="glyphicon glyphicon-search"></span> Buscar
@@ -23,8 +23,13 @@
                 <br></br>
                 <br></br>
             </form>
-
-            <form action="/livros" method="post" id="listLivrosForm" role="form" >              
+            
+            <c:if test="${not empty message}">                
+                <div class="alert alert-success">
+                    ${message}
+                </div>
+            </c:if> 
+            <form action="/bibliotecaJdbc/livros" method="post" id="listLivrosForm" role="form" >              
                 <input type="hidden" id="idLivro" name="idLivro">
                 <input type="hidden" id="action" name="action">
                 <c:choose>
@@ -47,16 +52,16 @@
                                 </c:if>
                                 <tr class="${classSucess}">
                                     <td>
-                                        <a href="/livros?idLivro=${livro.id}&searchAction=searchById">${livro.id}</a>
+                                        <a href="/bibliotecaJdbc/livros?idLivro=${livro.id}&searchAction=buscaLivroById">${livro.id}</a>
                                     </td>                                    
                                     <td>${livro.nome}</td>
                                     <td>${livro.descricao}</td>
-                                    <td>${employee.valor}</td>
-                                    <td>${employee.ano}</td> 
+                                    <td>${livro.valor}</td>
+                                    <td>${livro.ano}</td> 
                                     <td><a href="#" id="remove" 
-                                           onclick="document.getElementById('action').value = 'remove';document.getElementById('idLivro').value = '${livro.id}';
+                                           onclick="document.getElementById('action').value = 'remover';document.getElementById('idLivro').value = '${livro.id}';
                                                     document.getElementById('listLivrosForm').submit();"> 
-                                            <span class="glyphicon glyphicon-trash"/>
+                                            <span class="glyphicon glyphicon-trash"></span>
                                         </a>
                                                    
                                     </td>

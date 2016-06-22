@@ -52,7 +52,7 @@ public class LivroController extends HttpServlet{
             Logger.getLogger(LivroController.class.getName()).log(Level.SEVERE, null, ex);
         }
         req.setAttribute("livro", livro);
-        req.setAttribute("action", "edit");
+        req.setAttribute("action", "editar");
         String nextJSP = "/livro.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
         dispatcher.forward(req, resp);
