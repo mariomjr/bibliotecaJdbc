@@ -1,0 +1,10 @@
+CREATE SCHEMA biblioteca;
+
+create table livro(
+	id bigint NOT NULL,
+  	nome character varying(255),
+	descricao character varying(255),
+	ano integer,
+	valor double precision,
+  	dataInclusao timestamp without time zone,
+);
