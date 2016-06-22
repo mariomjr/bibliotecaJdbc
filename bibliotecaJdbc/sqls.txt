@@ -1,4 +1,4 @@
-CREATE SCHEMA biblioteca;
+CREATE database biblioteca;
 
 create table livro(
 	id bigint NOT NULL,
