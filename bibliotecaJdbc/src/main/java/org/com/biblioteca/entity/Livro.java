@@ -18,7 +18,7 @@ public class Livro implements Serializable{
 	
 	private Integer ano;
 	
-	private Calendar dataInsercao;
+	private Calendar dataInclusao;
 	
 	private Double valor;
 	
@@ -27,12 +27,12 @@ public class Livro implements Serializable{
 		super();
 	}
 
-	public Livro(String nome, String descricao, Integer ano, Calendar dataInsercao, Double valor) {
+	public Livro(String nome, String descricao, Integer ano, Calendar dataInclusao, Double valor) {
 		super();
 		this.nome = nome;
 		this.descricao = descricao;
 		this.ano = ano;
-		this.dataInsercao = dataInsercao;
+		this.dataInclusao = dataInclusao;
 		this.valor = valor;
 	}
 	
@@ -78,12 +78,12 @@ public class Livro implements Serializable{
 		this.ano = ano;
 	}
 
-	public Calendar getDataInsercao() {
-		return dataInsercao;
+	public Calendar getDataInclusao() {
+		return dataInclusao;
 	}
 
-	public void setDataInsercao(Calendar dataInsercao) {
-		this.dataInsercao = dataInsercao;
+	public void setDataInclusao(Calendar dataInclusao) {
+		this.dataInclusao = dataInclusao;
 	}
 
 	public Double getValor() {

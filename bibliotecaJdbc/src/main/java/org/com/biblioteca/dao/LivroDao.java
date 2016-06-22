@@ -21,7 +21,7 @@ public class LivroDao {
 		if(conn!= null){
 			try {
 				StringBuilder sql = new StringBuilder();
-				sql.append(" select id, nome, descricao, ano, dataInsercao, valor from livro  where id = ?");
+				sql.append(" select id, nome, descricao, ano, dataInclusao, valor from livro  where id = ?");
 				PreparedStatement ps = conn.prepareStatement(sql.toString());
 				ps.setLong(1, id);
 				ResultSet rs = ps.executeQuery();
@@ -34,7 +34,7 @@ public class LivroDao {
 					Date date = rs.getDate("dataInsercao");
 					Calendar data = Calendar.getInstance();
 					data.setTimeInMillis(date.getTime());
-					livro.setDataInsercao(data);
+					livro.setDataInclusao(data);
 					livro.setValor(rs.getDouble("valor"));
 					return livro;
 				}
@@ -59,7 +59,7 @@ public class LivroDao {
 		if(conn!= null){
 			try {
 				StringBuilder sql = new StringBuilder();
-				sql.append(" select id, nome, descricao, ano, dataInsercao, valor from livro");
+				sql.append(" select id, nome, descricao, ano, dataInclusao, valor from livro");
 				PreparedStatement ps = conn.prepareStatement(sql.toString());
 //				ps.setLong(1, id);
 				ResultSet rs = ps.executeQuery();
@@ -74,7 +74,7 @@ public class LivroDao {
 					Date date = rs.getDate("dataInsercao");
 					Calendar data = Calendar.getInstance();
 					data.setTimeInMillis(date.getTime());
-					livro.setDataInsercao(data);
+					livro.setDataInclusao(data);
 					livro.setValor(rs.getDouble("valor"));
 					listLivro.add(livro);
 				}
