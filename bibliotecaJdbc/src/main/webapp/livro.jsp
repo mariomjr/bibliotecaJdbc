@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="resources/css/imc.css">
         <script src="resources/js/bootstrap.min.js"></script>
         <script src="resources/js/jquery-mask-min.js"></script>
+        <script src="resources/js/biblioteca.js"></script>
         
         <script src="resources/js/imc.js"></script>  
     </head>
